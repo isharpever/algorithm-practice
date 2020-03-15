@@ -9,7 +9,7 @@ public class QuickSort2 {
         int[] a = SortUtil.generateRandomArray(length, bound);
 
         System.out.println(Arrays.toString(a));
-        sort3(a, 0, a.length - 1);
+        sort2(a, 0, a.length - 1);
         System.out.println(Arrays.toString(a));
     }
 
@@ -37,36 +37,19 @@ public class QuickSort2 {
     }
 
     private static void sort2(int[] a, int l, int r) {
-        int i = l - 1, tmp = a[r];
+        int i = l, tmp = a[r];
 
         for (int j = l; j < r; j++) {
             if (a[j] < tmp) {
-                swap(a, ++i, j);
+                swap(a, i++, j);
             }
         }
-        swap(a, i + 1, r);
-        if (l < i) {
-            sort2(a, l, i);
+        swap(a, i, r);
+        if (l < i - 1) {
+            sort2(a, l, i - 1);
         }
-        if (i + 2 < r) {
-            sort2(a, i + 2, r);
-        }
-    }
-
-    private static void sort3(int[] a, int l, int r) {
-        int i = l - 1, tmp = a[r];
-
-        for (int j = l; j < r; j++) {
-            if (a[j] < tmp) {
-                swap(a, ++i, j);
-            }
-        }
-        swap(a, i + 1, r);
-        if (l < i) {
-            sort3(a, l, i);
-        }
-        if (i + 2 < r) {
-            sort3(a, i + 2, r);
+        if (r > i + 1) {
+            sort2(a, i + 1, r);
         }
     }
 }
